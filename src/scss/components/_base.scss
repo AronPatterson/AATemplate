@@ -1,6 +1,5 @@
 /** BASE **/
 @-ms-viewport {
-	// the future "viewport" tags - no harm in adding it pre-support!
 	width: device-width;
 }
 @viewport {
@@ -177,7 +176,6 @@ button {
 	color: $white;
 }
 
-
 /*/ HEADER /*/
 #hdrContainer {
 	background: $body-nav-bg;
@@ -208,19 +206,29 @@ button {
 }
 #mainNav {
 	text-align: center;
+	position: static;
 	> li {
 		@include breakpoint(large) {
 			height: 54px;
 			border-right: 1px solid #dadada;
+			&:first-child {
+				border-left: 1px solid #dadada;
+			}
 			> a {
-				padding: 0 0 3px 0;
+				padding: 16px 0 20px 0; // T R B L
 				font-family: $header-font-family;
 				font-weight: 700;
 				font-size: 16px;
 				color: $body-font-color;
-				border-bottom: 1px solid $secondary-color;
+				> span {
+					padding-bottom: 3px;
+					border-bottom: 2px solid $secondary-color;
+				}
 				&:hover {
 					color: scale-color($body-font-color, $lightness: 10%);
+					> span {
+						border: 0;
+					}
 				}
 			}
 			&:hover {
@@ -244,7 +252,8 @@ button {
 	}
 	.menuActivate { // this is a class given to a dropdown menu via jQuery, to ensure it stays open if they're hovering giantMenu
 		background-color: $white;
-		a {
+		> a {
+			color: $dark-gray;
 			border-bottom: 0px!important;
 		}
 	}
@@ -263,22 +272,33 @@ button {
 		margin-right: 6px; /* border-width */
 		input[type="text"] {
 			margin: 2px 0;
+			padding-right: 40px;
 			background: transparent;
 			height: auto;
 			box-shadow: none;
 			border: 0;
 			width: 88%;
 			@include disable-mouse-outline;
+			&:invalid {
+				background-color: $custom-red;
+				&::after {
+					content: "(invalid characters found!)";
+					height: auto;
+					width: 100%;
+					display: inline-block;
+				}
+			}
 		}
 		select {
 			width: 12%;
-			height: 2rem;
-			margin: .1rem 0 0;
+			height: auto;
+			margin: 0;
 			border: 0;
 			float: left;
 			border-right: 1px solid $light-gray;
-			border-top-right-radius: 0;
-			border-top-left-radius: 0;
+			border-radius: 0;
+			border-bottom-left-radius: $global-radius;
+			border-top-left-radius: $global-radius;
 			@include disable-mouse-outline;
 		}
 		button {
@@ -307,11 +327,17 @@ button {
 // these are our Mega Menu overwrites, to help replicate the behavior of a mega menu inside of Foundation's default nav
 // warning: prepare to see some hacks...
 #giantMenu {
+	z-index: 999;
 	overflow: hidden;
+	@include breakpoint(large up) {
+		top: 16%;
+		left: auto;
+	}
 	.close-button {
 		position: absolute;
 		top: 20px;
 		right: 25px;
+		z-index: 99;
 	}
 	.copyBlue {
 		background-color: $secondary-color;
@@ -334,7 +360,6 @@ button {
 		padding: 0;
 	}
 	border: 1px solid $white;
-	border-top: 0px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 	.column {
@@ -358,12 +383,14 @@ button {
 	color: $white;
 	background: $body-footer-bg;
 	hr {
+		width: 100%;
 		border-bottom: 1px solid rgba($white,.2);
 	}
 	p {
 		font-family: $body-font-family;
 		font-size: 16px;
-		font-color: $white;
+		color: $white;
+		padding-bottom: 22px;
 	}
 }
 

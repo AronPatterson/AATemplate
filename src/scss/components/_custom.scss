@@ -63,7 +63,7 @@
 
 /*/ SLIDESHOW /*/
 #theSlideshow {
-	background: transparent url('img/ajax-loader.gif') no-repeat 50% 70%;
+	background: transparent url('/img/ajax-loader.gif') no-repeat 50% 70%;
 }
 .slideshowTitle {
 	position: absolute;
@@ -193,7 +193,6 @@
 	}
 }
 
-
 /*/ EXTRA CONTENT STUFF /*/
 .ctaBox {
 	position: relative;
@@ -206,12 +205,23 @@
 			width: 100%;
 			height: auto;
 			overflow: hidden;
+			border-radius: $global-radius;
+			@include breakpoint(small down) { // since mobile users won't get to see the cool scaling, we gotta do something for 'em so they know to click
+				&::after {
+					position: absolute;
+					font-family: "FontAwesome";
+					content: "\f0c1";
+					top: 4%;
+					right: 6%;
+					color: $secondary-color;
+				}
+			}
 		}
 		img {
 			width: 100%;
 			height: 100%;
 			transition: transform 1.5s ease-in-out;
-			background: transparent url('img/ajax-loader.gif') no-repeat 50% 50%;
+			background: transparent url('/img/ajax-loader.gif') no-repeat 50% 50%; // loader in case a user doesn't see the image right away
 		}
 		&:hover img { // scale up the image for a cool zoom-in effect when you hover the CTA box itself, with the hidden overflow making sure it doesn't blow up too big
 			transform: scale(1.25);

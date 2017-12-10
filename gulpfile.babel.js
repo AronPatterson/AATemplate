@@ -17,7 +17,7 @@ import named         from 'vinyl-named';
 const $ = plugins();
 
 // Check for --production flag
-const PRODUCTION = !!(yargs.argv.production);
+const PRODUCTION = true;
 
 // Load settings from settings.yml
 const { COMPATIBILITY, PORT, UNCSS_OPTIONS, PATHS } = loadConfig();

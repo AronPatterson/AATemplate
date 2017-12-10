@@ -10,26 +10,26 @@ import { Nest } from 'foundation-sites/js/foundation.util.nest';
 import { Timer } from 'foundation-sites/js/foundation.util.timer';
 import { Touch } from 'foundation-sites/js/foundation.util.touch';
 import { Triggers } from 'foundation-sites/js/foundation.util.triggers';
-import { Abide } from 'foundation-sites/js/foundation.abide';
+//import { Abide } from 'foundation-sites/js/foundation.abide';
 import { Accordion } from 'foundation-sites/js/foundation.accordion';
 import { AccordionMenu } from 'foundation-sites/js/foundation.accordionMenu';
 import { Drilldown } from 'foundation-sites/js/foundation.drilldown';
 import { Dropdown } from 'foundation-sites/js/foundation.dropdown';
 import { DropdownMenu } from 'foundation-sites/js/foundation.dropdownMenu';
-import { Equalizer } from 'foundation-sites/js/foundation.equalizer';
+//import { Equalizer } from 'foundation-sites/js/foundation.equalizer';
 import { Interchange } from 'foundation-sites/js/foundation.interchange';
-import { Magellan } from 'foundation-sites/js/foundation.magellan';
-import { OffCanvas } from 'foundation-sites/js/foundation.offcanvas';
+//import { Magellan } from 'foundation-sites/js/foundation.magellan';
+//import { OffCanvas } from 'foundation-sites/js/foundation.offcanvas';
 import { Orbit } from 'foundation-sites/js/foundation.orbit';
 import { ResponsiveMenu } from 'foundation-sites/js/foundation.responsiveMenu';
 import { ResponsiveToggle } from 'foundation-sites/js/foundation.responsiveToggle';
-import { Reveal } from 'foundation-sites/js/foundation.reveal';
-import { Slider } from 'foundation-sites/js/foundation.slider';
+//import { Reveal } from 'foundation-sites/js/foundation.reveal';
+//import { Slider } from 'foundation-sites/js/foundation.slider';
 import { SmoothScroll } from 'foundation-sites/js/foundation.smoothScroll';
-import { Sticky } from 'foundation-sites/js/foundation.sticky';
-import { Tabs } from 'foundation-sites/js/foundation.tabs';
-import { Toggler } from 'foundation-sites/js/foundation.toggler';
-import { Tooltip } from 'foundation-sites/js/foundation.tooltip';
+//import { Sticky } from 'foundation-sites/js/foundation.sticky';
+//import { Tabs } from 'foundation-sites/js/foundation.tabs';
+//import { Toggler } from 'foundation-sites/js/foundation.toggler';
+//import { Tooltip } from 'foundation-sites/js/foundation.tooltip';
 import { ResponsiveAccordionTabs } from 'foundation-sites/js/foundation.responsiveAccordionTabs';
 
 
@@ -52,13 +52,13 @@ Foundation.Nest = Nest;
 Foundation.Timer = Timer;
 
 // Touch and Triggers previously were almost purely sede effect driven,
-// so no // need to add it to Foundation, just init them.
+// so no need to add it to Foundation, just init them.
 
 Touch.init($);
 
 Triggers.init($, Foundation);
 
-Foundation.plugin(Abide, 'Abide');
+//Foundation.plugin(Abide, 'Abide');
 
 Foundation.plugin(Accordion, 'Accordion');
 
@@ -70,13 +70,13 @@ Foundation.plugin(Dropdown, 'Dropdown');
 
 Foundation.plugin(DropdownMenu, 'DropdownMenu');
 
-Foundation.plugin(Equalizer, 'Equalizer');
+//Foundation.plugin(Equalizer, 'Equalizer');
 
 Foundation.plugin(Interchange, 'Interchange');
 
-Foundation.plugin(Magellan, 'Magellan');
+//Foundation.plugin(Magellan, 'Magellan');
 
-Foundation.plugin(OffCanvas, 'OffCanvas');
+//Foundation.plugin(OffCanvas, 'OffCanvas');
 
 Foundation.plugin(Orbit, 'Orbit');
 
@@ -84,19 +84,19 @@ Foundation.plugin(ResponsiveMenu, 'ResponsiveMenu');
 
 Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
 
-Foundation.plugin(Reveal, 'Reveal');
+//Foundation.plugin(Reveal, 'Reveal');
 
-Foundation.plugin(Slider, 'Slider');
+//Foundation.plugin(Slider, 'Slider');
 
 Foundation.plugin(SmoothScroll, 'SmoothScroll');
 
-Foundation.plugin(Sticky, 'Sticky');
+//Foundation.plugin(Sticky, 'Sticky');
 
-Foundation.plugin(Tabs, 'Tabs');
+//Foundation.plugin(Tabs, 'Tabs');
 
-Foundation.plugin(Toggler, 'Toggler');
+//Foundation.plugin(Toggler, 'Toggler');
 
-Foundation.plugin(Tooltip, 'Tooltip');
+//Foundation.plugin(Tooltip, 'Tooltip');
 
 Foundation.plugin(ResponsiveAccordionTabs, 'ResponsiveAccordionTabs');
 
