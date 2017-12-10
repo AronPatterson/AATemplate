@@ -378,7 +378,7 @@ button {
 	position: relative;
 	width: 100%;
 	padding-top: 3%;
-	font-size: 16px;
+	font-size: rem-calc(16);
 	font-family: $header-font-family;
 	color: $white;
 	background: $body-footer-bg;
@@ -388,17 +388,26 @@ button {
 	}
 	p {
 		font-family: $body-font-family;
-		font-size: 16px;
+		font-size: rem-calc(16);
 		color: $white;
 		padding-bottom: 22px;
+		@include breakpoint(small down) {
+			font-size: rem-calc(18);
+		}
 	}
 }
 
 .footNav {
 	.menu {
 		font-weight: 700;
+		@include breakpoint(small down) {
+			margin-top: 10px;
+		}
 		li a {
 			font-size: rem-calc(14);
+			@include breakpoint(small down) {
+				font-size: rem-calc(20);
+			}
 		}
 	}
 	a {

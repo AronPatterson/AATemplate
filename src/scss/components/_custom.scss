@@ -46,6 +46,10 @@
 		@include breakpoint(medium down) {
 			visibility: visible!important;
 		}
+		button {
+			color: $titlebar-color;
+			padding-right: 4px;
+		}
 	}
 	.menu {
 		a {
