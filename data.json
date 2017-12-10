@@ -1,0 +1,34 @@
+{
+  "callouts": [
+    {
+      "title":"Callout One", 
+      "buttonLabel":"Click Me",
+      "imagePath":"/img/body_cta-1.jpg",
+      "color":"yellow"
+    },
+    {
+      "title":"Callout Two", 
+      "buttonLabel":"Click This",
+      "imagePath":"/img/body_cta-1.jpg",
+      "color":"red"
+    },
+    {
+      "title":"Callout Three", 
+      "buttonLabel":"",
+      "imagePath":"/img/body_cta-1.jpg",
+      "color":"green"
+    },
+    {
+      "title":"Callout Four", 
+      "buttonLabel":"",
+      "imagePath":"/img/body_cta-1.jpg",
+      "color":"green"
+    },    
+    {
+      "title":"Callout Five", 
+      "buttonLabel":"",
+      "imagePath":"/img/body_cta-1.jpg",
+      "color":"green"
+    }
+  ]
+}

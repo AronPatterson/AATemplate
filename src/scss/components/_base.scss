@@ -1,0 +1,466 @@
+/** BASE **/
+@-ms-viewport {
+	// the future "viewport" tags - no harm in adding it pre-support!
+	width: device-width;
+}
+@viewport {
+	width: device-width;
+}
+
+// The styles at the beginning of the stylesheet, modifying the structural elements of the layout
+html, body {
+	min-height: 100%; // in case we need a 100% screen-height stretch (must be present on all child divs to work correctly)
+}
+body {
+	height: 100%;
+	font-family: $body-font-family;
+	font-size: $global-font-size; // base font size - never change (only dollars)
+	color: $body-font-color;
+	background: $body-background;
+	background-size: cover;
+	background-attachment: fixed;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
+}
+#top {
+	// sets a maximum width for site, to ensure nothing looks awful on large screens
+	//max-width: 2560px;
+	margin: 0 auto;
+}
+
+// ARON BOX MODE
+div, section, article, aside {
+	// container tags are purple
+	border: 1px solid #b4d;
+}
+nav, header {
+	// nav/header tags are blue
+	border: 1px solid #00f;
+}
+table, thead, th, tbody, tfoot, tr, td {
+	// tables are aqua
+	border: 1px solid #0ff;
+}
+ul, ol {
+	// uls and ols are green
+	border: 1px solid #0f0;
+}
+li, p {
+	// lis and paragraphs are bright green
+	border: 1px solid #7f3;
+}
+.columns {
+	// columns are red
+	border: 1px solid #f00;
+}
+.row {
+	// initial rows are pink
+	border: 1px solid #f9c;
+	.row {
+		// embedded rows are purple/pink
+		border: 1px solid #f0c;
+	}
+}
+div, p, ul, li, section, article, aside, nav, header, table, thead, th, tbody, tfoot, tr, td, .columns, .row, .row .row {
+	border-width: $aron-box-mode;
+}
+
+
+/* GENERAL CLASSES */
+table[style] {
+	// if a table has an inline styling, give it a max width, so it's impossible to break out of a container
+	max-width: 100%!important;
+}
+
+h2, h3, h4, h5, h6 {
+	@include breakpoint(medium down) {
+		text-align: center;
+		margin-top: 8px;
+	}
+}
+
+// SELECTION (selecting text) & PLACEHOLDER (empty field placeholder text, for forms)
+// please do not try to combine these via commas - they need to be their own independent elements
+::-moz-selection {
+	// Firefox needs its own unique selector
+	color: $white;
+	background: rgba($secondary-color, .8);
+	text-shadow: none;
+}
+::-webkit-selection {
+	// so does Chrome apparently
+	color: $white;
+	background: rgba($secondary-color, .8);
+	text-shadow: none;
+}
+::selection {
+	// this affects the background color of text and image selections
+	color: $white;
+	background: rgba($secondary-color, .8);
+	text-shadow: none;
+}
+%placeholder-attribute {
+	color: $medium-gray;
+}
+:-moz-placeholder {
+	// Firefox 18-
+	@extend %placeholder-attribute;
+}
+::-moz-placeholder {
+	// Firefox 19+
+	@extend %placeholder-attribute;
+}
+:-ms-input-placeholder {
+	// ... take a guess
+	@extend %placeholder-attribute;
+}
+:focus::-webkit-input-placeholder {
+	// iOS disappear-on-focus hack
+	color: transparent;
+}
+
+input[type="submit"] {
+	position: relative;
+	@include button(false, $secondary-color, scale-color($secondary-color,$lightness:-10%), $white, solid);
+	background-image: linear-gradient(to bottom, $secondary-color, scale-color($secondary-color, $lightness: -20%));
+	border: 1px solid rgba($secondary-color,.3);
+	transition: border 2s, box-shadow .5s;
+	box-shadow: -4px 4px 5px -4px rgba(0,0,0,.5);
+	&:active {
+		border: 1px solid transparent;
+		box-shadow: none;
+	}
+	@include disable-mouse-outline; // nifty feature that kills outlines for mouse users, but not for keyboard users
+}
+button {
+	@include disable-mouse-outline;
+}
+
+// INLINE CLASSES
+// before you add something to this, make sure it's not already provided by Foundation
+// text-left, text-center, text-right -- float-left, float-center, float-right (clearfix to parent on floats)
+.absolute {
+	position: absolute!important;
+}
+.relative {
+	position: relative!important;
+}
+.none, .hidden, [hidden] {
+	display: none;
+}
+.sr-only {
+	// hidden for sighted users, but not screenreaders
+	overflow: hidden;
+	position: absolute;
+	top: auto;
+	left: -10000px;
+	width: 1px;
+	height: 1px;
+}
+// text styling
+.uppercase {
+	text-transform: uppercase;
+}
+
+/*/ GLOBAL CONTAINER /*/
+#top {
+	min-height: 100%;
+}
+
+// if the user has less than IE9... shame upon them and their houses
+#ltie9 {
+	display: block;
+	background-color: $custom-red;
+	border: 1px solid $white;
+	padding: 10px;
+	text-align: center;
+	color: $white;
+}
+
+
+/*/ HEADER /*/
+#hdrContainer {
+	background: $body-nav-bg;
+	display: block;
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	input[type="submit"] {
+		@extend .extButtons;
+		margin: 14px 0;
+	}
+	.logoArea {
+		h1 {
+			margin-bottom: 0;
+			img {
+				vertical-align: initial;
+			}
+			@include breakpoint(medium down) {
+				padding-top: 10px;
+			}
+		}
+	}
+}
+
+/*/ NAV /*/
+#navContainer {
+	margin-bottom: 1px; // this inexplicably fixes the 1px gap issue...
+}
+#mainNav {
+	text-align: center;
+	> li {
+		@include breakpoint(large) {
+			height: 54px;
+			border-right: 1px solid #dadada;
+			> a {
+				padding: 0 0 3px 0;
+				font-family: $header-font-family;
+				font-weight: 700;
+				font-size: 16px;
+				color: $body-font-color;
+				border-bottom: 1px solid $secondary-color;
+				&:hover {
+					color: scale-color($body-font-color, $lightness: 10%);
+				}
+			}
+			&:hover {
+				background-color: $white;
+				> a { // I know this looks like nesting madness, BUT, it lets the border bottom be controlled by hovering the li rather than the link
+					border-bottom: 1px solid transparent;
+				}
+			}
+		}
+		@include breakpoint(medium down) {
+			a {
+				background-color: $body-nav-bg;
+				font-family: $header-font-family;
+				border-top: 1px solid #555;
+				&:hover {
+					background-color: scale-color($medium-gray, $lightness: -20%);
+					color: $white;
+				}
+			}
+		}
+	}
+	.menuActivate { // this is a class given to a dropdown menu via jQuery, to ensure it stays open if they're hovering giantMenu
+		background-color: $white;
+		a {
+			border-bottom: 0px!important;
+		}
+	}
+}
+// our search bar styling
+#searchBar {
+	padding: 5px 0 0 18px;
+	@include breakpoint(medium down) {
+		padding: 4px 18px 8px 18px;
+	}
+	#inputSearch {
+		position: relative;
+		background: $white;
+		border-radius: $global-radius;
+		margin-top: 5px; /* margin-top + border-width */
+		margin-right: 6px; /* border-width */
+		input[type="text"] {
+			margin: 2px 0;
+			background: transparent;
+			height: auto;
+			box-shadow: none;
+			border: 0;
+			width: 88%;
+			@include disable-mouse-outline;
+		}
+		select {
+			width: 12%;
+			height: 2rem;
+			margin: .1rem 0 0;
+			border: 0;
+			float: left;
+			border-right: 1px solid $light-gray;
+			border-top-right-radius: 0;
+			border-top-left-radius: 0;
+			@include disable-mouse-outline;
+		}
+		button {
+			position: absolute;
+			right: 0;
+			top: 0;
+			display: block;
+			width: 40px;
+			height: 40px;
+			padding: 0;
+			border: none;
+			background: transparent;
+			color: rgba($black, .5);
+			line-height: 40px;
+			@include disable-mouse-outline;
+			&:hover {
+				color: rgba($black, .3);
+			}
+			.fa-lg {
+				vertical-align: 0;
+			}
+		}
+	}
+}
+
+// these are our Mega Menu overwrites, to help replicate the behavior of a mega menu inside of Foundation's default nav
+// warning: prepare to see some hacks...
+#giantMenu {
+	overflow: hidden;
+	.close-button {
+		position: absolute;
+		top: 20px;
+		right: 25px;
+	}
+	.copyBlue {
+		background-color: $secondary-color;
+		border-bottom-right-radius: $global-radius;
+		padding: 2rem;
+		text-align: left;
+		font-size: rem-calc(14);
+		color: $white;
+	}
+	.menu {
+		font-size: rem-calc(14);
+	}
+}
+.dropdown-pane { // this overwrites the Foundation default so we can get it full width; I'm keeping it 'dropdown-pane' in order to make that distinction
+	background-color: $white;
+	width: 100%!important;
+	max-width: $global-width!important;
+	padding: 0 0 0 1rem;
+	@include breakpoint(medium down) {
+		padding: 0;
+	}
+	border: 1px solid $white;
+	border-top: 0px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	.column {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	}
+}
+
+/*/ MODULES /*/
+// this would normally be plugins vital to the layout
+
+/*/ FOOTER /*/
+// Footer area content
+#siteFooter {
+	display: block;
+	position: relative;
+	width: 100%;
+	padding-top: 3%;
+	font-size: 16px;
+	font-family: $header-font-family;
+	color: $white;
+	background: $body-footer-bg;
+	hr {
+		border-bottom: 1px solid rgba($white,.2);
+	}
+	p {
+		font-family: $body-font-family;
+		font-size: 16px;
+		font-color: $white;
+	}
+}
+
+.footNav {
+	.menu {
+		font-weight: 700;
+		li a {
+			font-size: rem-calc(14);
+		}
+	}
+	a {
+		color: $white;
+		&:hover {
+			color: scale-color($white, $lightness: -20%);
+		}
+	}
+}
+
+
+// for newsletter submission field in footer
+.newsWrapper {
+	width: 100%;
+	margin-bottom: 18px;
+	.emailBox {
+		position: relative;
+		display: inline-block;
+		width: 362px;
+		height: 40px;
+		box-shadow: -1px 0px 4px 0px rgba(0,0,0, 0.75);
+	}
+	input[type="email"] {
+		display: inline-block;
+		width: 280px;
+		height: 2.54rem;
+		margin: 0;
+		border: 0;
+		border-bottom-right-radius: 0;
+		border-top-right-radius: 0;
+	}
+		//box-shadow: -1px 0px 4px 0px rgba($black, 0.75);
+	button {
+		@extend .extButtons;
+		display: inline-block;
+		position: relative;
+		top: -2px;
+		@include button(false, $secondary-color, scale-color($secondary-color,$lightness:-10%), $white, solid);
+		background-image: linear-gradient(to bottom, $secondary-color, scale-color($secondary-color, $lightness:-20%));
+		margin: 0;
+		padding: .8rem 1rem;
+		line-height: .96;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+	}
+
+}
+
+// Back to Top
+// nifty little feature that activates if a page ends up being too long - accessibility 4tw
+.backToTopBtn {
+	display: inline-block;
+	visibility: hidden;
+	position: fixed;
+	right: 20px;
+	bottom: 40px;
+	width: 40px;
+	height: 40px;
+	padding-top: 7px;
+	font-family: 'FontAwesome';
+	font-size: 18px;
+	opacity: 0;
+	color: $secondary-color;
+	background: rgba($primary-color, .8) center 50%;
+	box-shadow: 0 0 10px rgba(#000, .05);
+	transition: opacity .3s 0s, visibility 0s .3s;
+	text-align: center;
+	white-space: nowrap;
+	border-radius: $global-radius;
+	@include breakpoint(medium down) {
+		right: 20px;
+		bottom: 20px;
+	}
+	&.bttVisible, &.bttFadeOut, .no-touch &:hover {
+		transition: opacity .3s 0s, visibility 0s 0s;
+	}
+	&.bttVisible {
+		// the button becomes visible
+		visibility: visible;
+		opacity: 1;
+	}
+	&.bttFadeOut {
+		// if the user keeps scrolling down, the button is out of focus and becomes less visible
+		opacity: .5;
+	}
+	.no-touch &:hover {
+		opacity: 1;
+		background-color: rgba($white, 1);
+	}
+}
+
+
