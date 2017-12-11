@@ -1,0 +1,346 @@
+/** CUSTOM **/
+// Design styles - slideshow, content area, CTAs, social media icons //
+
+/*/ UNIVERSAL STYLES /*/
+.extButtons { // SASS extend for hovering over gradients
+	&:hover {
+		background-image: linear-gradient(to bottom, scale-color($secondary-color, $lightness: -10%), scale-color($secondary-color, $lightness: -30%));
+	}
+	&:focus,&:active {
+		background-image: linear-gradient(to bottom, scale-color($secondary-color, $lightness: -30%), scale-color($secondary-color, $lightness: -10%));
+	}
+}
+
+/*/ FOUNDATION FIXES /*/
+// Unfortunately, sometimes a robust framework requires some fixes
+@if $global-flexbox == false {
+	.accordion-menu li[role="menuitem"], .accordion-menu li[role="tab"] {
+		display: block;
+	}
+	.menu>li {
+		@include breakpoint(medium down) {
+			display: block!important;
+		}
+	}
+	.menu-icon:after:hover {
+		background: scale-color($white, $lightness: -16%);
+		box-shadow: 0 7px 0 scale-color($white, $lightness: -5%), 0 14px 0 scale-color($white, $lightness: -5%);
+	}
+	.menu a {
+		display: inline-block!important;
+		@include breakpoint(medium down) {
+			display: block!important;
+		}
+	}
+	.dropdown.menu.large-horizontal>li.is-dropdown-submenu-parent>a:after {
+		border-color: $dropdown-arrow-color transparent transparent!important;
+	}
+	.is-dropdown-submenu .is-dropdown-submenu-parent.opens-right>a:after {
+		border-color: transparent transparent transparent $dropdown-arrow-color!important;
+	}
+}
+@if $global-flexbox == true {
+	.title-bar {
+		visibility: hidden;
+		justify-content: center;
+		@include breakpoint(medium down) {
+			visibility: visible!important;
+		}
+		button {
+			color: $titlebar-color;
+			padding-right: 4px;
+		}
+	}
+	.menu {
+		a {
+			@include disable-mouse-outline;
+		}
+		@include breakpoint(large) {
+			display: flex!important;
+		}
+		@include breakpoint(medium down) {
+			display: block;
+		}
+	}
+}
+
+
+/*/ SLIDESHOW /*/
+#theSlideshow {
+	background: transparent url('../img/ajax-loader.gif') no-repeat 50% 70%;
+}
+.slideshowTitle {
+	position: absolute;
+	display: inline-block;
+	padding: 20px;
+	background-color: $white;
+	border-top: 4px solid $secondary-color;
+	text-align: center;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-bottom-right-radius: $global-radius;
+	border-bottom-left-radius: $global-radius;
+	@include breakpoint(medium down) { // this is a bit hacky, but... deadlines!
+		position: relative;
+		left: auto;
+		top: auto;
+		transform: initial;
+		z-index: 99;
+	}
+	.welcomeText {
+		font-size: rem-calc(30);
+		font-weight: normal;
+		@include breakpoint(large down) {
+			font-size: rem-calc(24);
+		}
+	}
+}
+// Shop Now button
+.slideshowShopBtn {
+	position: absolute;
+	display: inline-block;
+	left: 50%;
+	top: 100%;
+	transform: translate(-50%, -50%);
+	.button {
+		@include button(false, $secondary-color, scale-color($secondary-color,$lightness:-10%), $white, solid);
+		display: block;
+		margin: 0!important;
+		background-image: linear-gradient(to bottom, $secondary-color, scale-color($secondary-color,$lightness: -20%));
+		@include breakpoint(medium down) {
+			width: 100%;
+		}
+		@extend .extButtons;
+	}
+	@include breakpoint(medium down) {
+		position: relative;
+		width: 100%;
+		left: auto;
+		top: auto;
+		transform: initial;
+		z-index: 99;
+	}
+}
+// Orbit overwrites
+.orbit-next, .orbit-previous {
+	background: rgba(0,0,0,.6);
+	color: $secondary-color;
+	&:hover {
+		background: rgba($black,.1);
+	}
+}
+
+/*/ CONTENT /*/
+// Main content area styles - these are the basics to save time on initial build, but can be deleted/recreated as needed
+#mainContent {
+	position: relative;
+	padding: 0 0;
+	a {
+		@include disable-mouse-outline;
+	}
+	ul {
+		list-style: square;
+		li {
+			list-style-type: square;
+			margin-left: 15px;
+		}
+	}
+	// Interior Page
+	#contentBox {
+		margin-top: 6px;
+		padding: 26px 30px 0 30px;
+		background: $body-content-bg;
+		background-position: center center;
+		background-repeat: repeat;
+		border-top-left-radius: $global-radius;
+		border-top-right-radius: $global-radius;
+		@include breakpoint(medium down) {
+			padding: 20px;
+			margin-top: 0;
+			border-bottom: 0;
+			border-right: 0;
+		}
+		p {
+			font-family: $body-font-family;
+			font-size: 14px;
+		}
+		a {
+			color: $anchor-color;
+			text-decoration: $anchor-text-decoration;
+			&:hover {
+				color: $anchor-color-hover;
+				text-decoration: $anchor-text-decoration-hover;
+			}
+		}
+		blockquote {
+			margin: 0 0 20px;
+			padding: 2px 20px 0 20px;
+			color: scale-color($gray, $lightness: -20%);
+			border-left: 1px solid scale-color($gray, $lightness: 20%);
+			cite {
+				display: block;
+				font-size: 13px;
+				color: scale-color($gray, $lightness: -20%);
+				&::before {
+					content: '\2014 \0020';
+				}
+				a, a:visited {
+					color: scale-color($gray, $lightness: -30%);
+				}
+			}
+			p {
+				color: scale-color($gray, $lightness: -20%);
+			}
+		}
+	}
+}
+
+/*/ EXTRA CONTENT STUFF /*/
+.ctaBox {
+	position: relative;
+	.column {
+		position: relative;
+		text-align: center;
+		margin-bottom: 20px;
+		a {
+			display: inline-block;
+			width: 100%;
+			height: auto;
+			overflow: hidden;
+			border-radius: $global-radius;
+			@include breakpoint(small down) { // since mobile users won't get to see the cool scaling, we gotta do something for 'em so they know to click
+				&::after {
+					position: absolute;
+					font-family: "FontAwesome";
+					content: "\f0c1";
+					top: 4%;
+					right: 6%;
+					color: $secondary-color;
+				}
+			}
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			transition: transform 1.5s ease-in-out;
+			background: transparent url('../img/ajax-loader.gif') no-repeat 50% 50%; // loader in case a user doesn't see the image right away
+		}
+		&:hover img { // scale up the image for a cool zoom-in effect when you hover the CTA box itself, with the hidden overflow making sure it doesn't blow up too big
+			transform: scale(1.25);
+		}
+		// interior white borders for our 3 smaller comrades... this was just as annoying as it looks!
+		.whiteBorders {
+			position: absolute;
+			transform: translate(8%,-112%);
+			top: 100%;
+			right: 16%;
+			height: 82%;
+			width: 82%;
+			z-index: 99;
+			border: 3px solid $white;
+			border-radius: 4px;
+		}
+		// our titles
+		.ctaTitle {
+			position: absolute;
+			display: inline-block;
+			padding: 20px;
+			width: 50%;
+			background-color: $white;
+			border-top: 4px solid;
+			text-align: center;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: rem-calc(20);
+			font-weight: 900;
+			border-bottom-right-radius: $global-radius;
+			border-bottom-left-radius: $global-radius;
+			&.redCTA {
+				border-top-color: $custom-red;
+			}
+			&.yellowCTA {
+				border-top-color: $custom-yellow;
+			}
+			&.greenCTA {
+				border-top-color: $neon-green;
+			}
+		}
+		// our labels - only affects the upper-two squares!
+		.ctaLabel {
+			position: absolute;
+			background-color: rgba($black, .6);
+			border: 4px solid $secondary-color;
+			padding: 8px 30px;
+			color: $white;
+			text-align: center;
+			top: 80%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-weight: 700;
+			border-radius: $global-radius;
+			transition: border-color .5s ease-in-out;
+			&.redCTA:hover {
+				border-color: $custom-red;
+			}
+			&.yellowCTA:hover {
+				border-color: $custom-yellow;
+			}
+			&.greenCTA:hover {
+				border-color: $neon-green;
+			}
+		}
+	}
+	&#ctaSmall .ctaTitle { // reduce font size to avoid annoying wrapping on only the smaller CTAs
+		font-size: rem-calc(16);
+	}
+}
+
+.phoneNum {
+	font-size: rem-calc(18);
+	color: $white;
+}
+
+
+/*/ SOCIAL MEDIA ICONS /*/
+#socialMedia {
+	h3 {
+		font-size: 18px;
+		color: $white;
+	}
+	ul {
+		list-style-type: none;
+		margin-bottom: 0;
+		margin-left: 0;
+		li {
+			display: inline-block;
+			background-color: $secondary-color;
+			width: 35px;
+			height: 35px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			padding-top: 4px;
+			border-radius: 1000px;
+			text-align: center;
+			border: 1px solid rgba($secondary-color,.3);
+			transition: box-shadow .1s;
+			color: $white;
+			&:active, &:focus {
+				box-shadow: -1px 1px 1px -1px rgba($black,.5);
+			}
+			&:hover {
+				background-color: $white;
+			}
+			a {
+				color: $white;
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+				&:hover {
+					color: $robin-egg-blue!important;
+				}
+			}
+		}
+	}
+}
