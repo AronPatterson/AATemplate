@@ -81,8 +81,8 @@ $body-font-color: $dark-gray;
 $body-font-family: "Lato", Arial, sans-serif;
 $body-antialiased: true;
 $body-content-bg: $body-background;
-$body-nav-bg: url('/img/nav_bg.png') $dark-gray;
-$body-footer-bg: url('/img/nav_bg.png') $dark-gray; // the image format allows the colors to match the tree colors
+$body-nav-bg: url('../img/nav_bg.png') $dark-gray;
+$body-footer-bg: url('../img/nav_bg.png') $dark-gray; // the image format allows the colors to match the tree colors
 
 // BASE TYPOGRAPHY
 // headers
