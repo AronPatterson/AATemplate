@@ -4,9 +4,7 @@ import plugins       from 'gulp-load-plugins';
 import yargs         from 'yargs';
 import browser       from 'browser-sync';
 import gulp          from 'gulp';
-//import panini        from 'panini';
 import rimraf        from 'rimraf';
-//import sherpa        from 'style-sherpa';
 import yaml          from 'js-yaml';
 import fs            from 'fs';
 import webpackStream from 'webpack-stream';
@@ -47,29 +45,6 @@ function copy() {
   return gulp.src(PATHS.content)
     .pipe(gulp.dest(PATHS.dist + '/'));
 }
-
-// Copy page templates into finished HTML files
-//function pages() {
-//  return gulp.src('src/**/*.html')
-//    .pipe(panini({
-//      root: 'src/'
-//    }))
-//    .pipe(gulp.dest(PATHS.dist));
-//}
-
-// Load updated HTML templates and partials into Panini
-//function resetPages(done) {
-//  panini.refresh();
-//  done();
-//}
-
-// Generate a style guide from the Markdown content and HTML template in styleguide/
-//function styleGuide(done) {
-//  sherpa('src/styleguide/index.md', {
-//    output: PATHS.dist + '/styleguide.html',
-//    template: 'src/styleguide/template.html'
-//  }, done);
-//}
 
 // Compile Sass into CSS
 // In production, the CSS is compressed
